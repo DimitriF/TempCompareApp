@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">TempCompare - Girona vs Brest</string>
+    <string name="city_girona">Girona, ES</string>
+    <string name="city_brest">Brest, FR</string>
+    <string name="temp_label">Temperature</string>
+    <string name="feels_like">Feels like</string>
+    <string name="humidity">Humidity</string>
+    <string name="wind">Wind</string>
+    <string name="description">Conditions</string>
+    <string name="last_updated">Last updated: %s</string>
+    <string name="refresh">Refresh</string>
+    <string name="loading">Loading weather...</string>
+    <string name="error_loading">Failed to load weather data</string>
+    <string name="retry">Retry</string>
+    <string name="difference">Difference</string>
+    <string name="warmer_in">Warmer in %s</string>
+    <string name="same_temp">Same temperature</string>
+    <string name="celsius">°C</string>
+    <string name="fahrenheit">°F</string>
+    <string name="settings">Settings</string>
+    <string name="use_celsius">Use Celsius</string>
+    <string name="auto_refresh">Auto refresh</string>
+    <string name="refresh_interval">Refresh interval (minutes)</string>
+</resources>
