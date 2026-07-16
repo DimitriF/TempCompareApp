@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
     private val brestColor by lazy { ContextCompat.getColor(this, R.color.brest_color) }
     private val textPrimary by lazy { ContextCompat.getColor(this, R.color.text_primary) }
     private val textSecondary by lazy { ContextCompat.getColor(this, R.color.text_secondary) }
-    private val errorColor by lazy { ContextCompat.getColor(this, R.color.error_color) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
