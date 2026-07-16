@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import java.util.concurrent.Executors
+import kotlin.math.abs
 
 class MainActivity : AppCompatActivity() {
 
@@ -96,7 +97,7 @@ class MainActivity : AppCompatActivity() {
     private fun updateUI(girona: WeatherApi.WeatherResult, brest: WeatherApi.WeatherResult) {
         val tempDiff = girona.temperature - brest.temperature
         val warmerCity = if (tempDiff > 0) "Girona" else if (tempDiff < 0) "Brest" else "Same"
-        val diffText = String.format(Locale.getDefault(), "%.1f°C", tempDiff.absoluteValue)
+        val diffText = String.format(Locale.getDefault(), "%.1f°C", abs(tempDiff))
         
         // Update comparison header
         binding.tvComparisonHeader.text = getString(R.string.comparison_format, warmerCity, diffText)
