@@ -1,24 +1,5 @@
-#!/bin/sh
-#
-# Copyright 2015 the original author or authors.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#      https://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
-##############################################################################
-##
-##  Gradle start up script for UN*X
-##
-##############################################################################
+#!/bin/bash
+# Gradle start up script for UN*X
 
 # Attempt to set APP_HOME
 # Resolve links: $0 may be a link
@@ -83,7 +64,6 @@ CLASSPATH=$APP_HOME/gradle/wrapper/gradle-wrapper.jar
 # Determine the Java command to use to start the JVM.
 if [ -n "$JAVA_HOME" ] ; then
     if [ -x "$JAVA_HOME/jre/sh/java" ] ; then
-        # IBM's JDK on AIX uses strange names for the executables
         JAVACMD="$JAVA_HOME/jre/sh/java"
     else
         JAVACMD="$JAVA_HOME/bin/java"
@@ -110,12 +90,6 @@ if [ "$cygwin" = "false" -a "$darwin" = "false" -a "$nonstop" = "false" ] ; then
             MAX_FD="$MAX_FD_LIMIT"
         fi
         ulimit -n $MAX_FD >/dev/null 2>&1
-        # Check if ulimit worked
-        if [ $? -ne 0 ] ; then
-            warn "Could not set maximum file descriptor limit: $MAX_FD"
-        fi
-    else
-        warn "Could not query maximum file descriptor limit"
     fi
 fi
 
@@ -125,29 +99,25 @@ if $darwin; then
 fi
 
 # For Cygwin or MSYS, switch paths to Windows format before running java
-if $cygwin ; then
-    APP_HOME=`cygwinpath -w "$APP_HOME"`
-    CLASSPATH=`cygwinpath -w "$CLASSPATH"`
-    JAVACMD=`cygwinpath -w "$JAVACMD"`
+if [ "$cygwin" = "true" -o "$msys" = "true" ] ; then
+    APP_HOME=`cygpath --path --mixed "$APP_HOME"`
+    CLASSPATH=`cygpath --path --mixed "$CLASSPATH"`
+    JAVACMD=`cygpath --unix "$JAVACMD"`
+
+    # We build the pattern for arguments to be converted via cygpath
+    ROOTDIRSRAW=`find "$APP_HOME" -name "*.jar" -o -name "*.class" | sed -e "s/.*://" | tr "\n" ":"`
+    ROOTDIRS=`cygpath --path --mixed "$ROOTDIRSRAW"`
 fi
 
-# For MSYS, switch paths to Windows format before running java
-if $msys ; then
-    APP_HOME=`cmd //c "cd" "$APP_HOME"`
-    CLASSPATH=`cmd //c "cd" "$CLASSPATH"`
-    JAVACMD=`cmd //c "cd" "$JAVACMD"`
-fi
-
-# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and escaping rules
-function splitJvmOpts() {
+# Split up the JVM_OPTS And GRADLE_OPTS values into an array, following the shell quoting and substitution rules
+splitJvmOpts() {
     JVM_OPTS=()
-    for arg in "$@"; do
-        JVM_OPTS+=("$arg")
+    for opt in "$@"; do
+        JVM_OPTS+=("$opt")
     done
 }
 
-# Collect all arguments for the java command
-splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
+eval splitJvmOpts $DEFAULT_JVM_OPTS $JAVA_OPTS $GRADLE_OPTS
+JVM_OPTS[${#JVM_OPTS[*]}]="-Dorg.gradle.appname=$APP_BASE_NAME"
 
-# Execute Gradle
 exec "$JAVACMD" "${JVM_OPTS[@]}" -classpath "$CLASSPATH" org.gradle.wrapper.GradleWrapperMain "$@"
